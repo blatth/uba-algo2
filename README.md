@@ -4,10 +4,10 @@
 
 ## Teóricos
 
-| N° | Tema                                                                                          |
-|-----|----------------------------------------------------------------------------------------------|
-| 1   | [Lógica](https://github.com/blatth/uba-algo2/blob/master/Teoricas/Teorica1.pdf)
-| 2   | [Especificación de problemas](https://github.com/blatth/uba-algo2/blob/master/Teoricas/Teorica2.pdf)
+| N° | Tema                                                                                          | Guía |
+|-----|----------------------------------------------------------------------------------------------|------|
+| 1   | [Lógica](https://github.com/blatth/uba-algo2/blob/master/Teoricas/Teorica1.pdf) | [📎](https://github.com/blatth/uba-algo2/blob/main/Gu%C3%ADas/Guia1.pdf)
+| 2   | [Especificación de problemas](https://github.com/blatth/uba-algo2/blob/master/Teoricas/Teorica2.pdf) | [📎](https://github.com/blatth/uba-algo2/blob/main/Gu%C3%ADas/Guia2.pdf)
 
 ## Talleres
 
