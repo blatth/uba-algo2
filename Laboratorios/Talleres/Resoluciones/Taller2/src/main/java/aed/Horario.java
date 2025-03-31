@@ -20,10 +20,10 @@ public class Horario {
     @Override
     public String toString() {
         if (String.valueOf(minutos).length() == 1){
-            return String.valueOf(hora)+":0"+String.valueOf(minutos);
+            return String.valueOf(hora) + ":0" + String.valueOf(minutos);
         }
         else{
-            return String.valueOf(hora)+":"+String.valueOf(minutos);
+            return String.valueOf(hora) + ":" + String.valueOf(minutos);
         }
     }
 

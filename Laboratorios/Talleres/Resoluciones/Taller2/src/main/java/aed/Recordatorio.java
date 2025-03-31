@@ -7,8 +7,8 @@ public class Recordatorio {
 
     public Recordatorio(String mensaje, Fecha fecha, Horario horario) {
         this.mensaje = mensaje;
-        this.fecha = new Fecha(this.fecha);
-        this.horario = horario;
+        this.fecha = new Fecha(fecha.dia(), fecha.mes());
+        this.horario = new Horario(horario.hora(), horario.minutos());
     }
 
     public Horario horario() {
@@ -16,7 +16,7 @@ public class Recordatorio {
     }
 
     public Fecha fecha() {
-        return new Fecha(this.fecha);
+        return new Fecha(this.fecha.dia(), this.fecha.mes());
     }
 
     public String mensaje() {
@@ -25,14 +25,16 @@ public class Recordatorio {
 
     @Override
     public String toString() {
-        // Implementar
-        return "";
+        return mensaje + " @ " + String.valueOf(fecha) + " " + String.valueOf(horario);
     }
 
     @Override
     public boolean equals(Object otro) {
-        // Implementar
-        return true;
-    }
+        if (otro == null || otro.getClass() != this.getClass()) {
+            return false;
+        }
+        Recordatorio otroRecordatorio = (Recordatorio) otro;
 
+        return this.mensaje.equals(otroRecordatorio.mensaje) && this.fecha.equals(otroRecordatorio.fecha) &&  this.horario.equals(otroRecordatorio.horario);
+    }
 }
