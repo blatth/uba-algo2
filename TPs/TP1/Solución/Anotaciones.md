@@ -3,7 +3,7 @@
 ## Precondiciones:
 
 - cantidad de transacciones válidas: 0 < |b| ≤ 50 -> cada bloque contiene entre 1 y 50 transacciones
-- transacciones con IDs ordenados dentro del bloque: (∀i ∈ [1..#transacciones(b)]) id(transacciones(b)[i−1]) < id(transacciones(b)[i])
+- transacciones con IDs ordenados dentro del bloque: (∀i ∈ [1..#transacciones(b)])(id(transacciones(b)[i−1]) < id(transacciones(b)[i])
 - cada transacción tiene:
 	- id_transacción: entero positivo
     - id_comprador ≠ id_vendedor, ambos enteros positivos
@@ -35,7 +35,7 @@
 
 ## Observadores:
 
-- **idBloque: Bloque -> nat)**
+- **idBloque: Bloque -> nat**
 - **transacciones: Bloque -> Secuencia(Transacción)**
 
 ### Ejemplo de uso:
@@ -43,4 +43,12 @@
 - b = bloque(3, t1, t2, t3)
 
 - transacciones(b) = < 3, t1, t2, t3 >, donde < t1, t2, t3 > es una secuencia de 4 transacciones (por ejemplo t1 = transacción(0, 0, 5, 100) y así)
+
+---
+
+## Rec TADs
+- **[Apunte de TADs](https://github.com/blatth/uba-algo2/blob/main/Apuntes/TADs.pdf)**
+
+Cada función debe indicar la precondición y la postcondición (requiere y asegura). Como ya indicamos, los requiere y asegura van a hacer referencia a los **observadores** del TAD. Para referirnos al **observador** x de la instancia t usamos la notación t.x. Para hablar del valor inicial de un parámetro de tipo inout usamos metavariables, refiriendo al tipo entero, no al **observador**, es decir, T_0.x, no t.X_0. Las metavariables deben declararse en el requiere.
+Para que la especificación sea completa, tenemos que describir el estado de todos los **observadores** al _salir_ de la operación. Recordemos que la implementación final del TAD solo debe respetar la especificación y puede modificar cualquier cosas que no se defina.
 
