@@ -52,3 +52,53 @@
 Cada función debe indicar la precondición y la postcondición (requiere y asegura). Como ya indicamos, los requiere y asegura van a hacer referencia a los **observadores** del TAD. Para referirnos al **observador** x de la instancia t usamos la notación t.x. Para hablar del valor inicial de un parámetro de tipo inout usamos metavariables, refiriendo al tipo entero, no al **observador**, es decir, T_0.x, no t.X_0. Las metavariables deben declararse en el requiere.
 Para que la especificación sea completa, tenemos que describir el estado de todos los **observadores** al _salir_ de la operación. Recordemos que la implementación final del TAD solo debe respetar la especificación y puede modificar cualquier cosas que no se defina.
 
+---
+
+	[RENOMBRE DE TIPOS]
+
+Transacción = struct {
+  id_transaccion: ℤ
+  id_comprador: ℤ
+  id_vendedor: ℤ
+  monto: ℤ
+}
+
+Bloque = struct {
+  id: ℤ
+  transacciones: seq<Transacción>
+}
+
+TAD $Berretacoin {
+  obs cadenaBloques: seq<Bloque>
+  obs tenedores: dict<Z, Z>
+  obs totalCreado: Z
+
+	[CONSTRUCTOR]
+
+  proc berretacoinNuevo(): $Berretacoin{
+    asegura {
+    res.cadenaBloques = ⟨⟩ ∧
+    res.tenedores = {} ∧
+    res.totalCreado = 0
+    	}
+	}
+
+  proc agregarBloque(inout bc: $Berretacoin, in trnsc: seq<Transacción>){
+    requiere {
+	cadenaBloques = cadenaBloques₀ ∧
+	totalCreado = totalCreado₀ ∧
+	tenedores = tenedores₀
+		}
+	requiere {
+    |trnsc| ≤ 50 ∧ --> cada bloque puede tener como máximo 50 transacciones
+    ∀ t ∈ trnsc: t.monto > 0 ∧ t.id_comprador ≠ t.id_vendedor ∧ --> no se permiten transacciones con montos negativos ni cero ∧ el comprador y el vendedor deben ser distintos
+    (trnsc ≠ [] → (trnsc[0].id_comprador = 0 ↔ bc.totalCreado < 3000)) ∧ --> controla si se puede incluir una transacción de creación: si trnsc no está vacía, la primera transacción es de creación y verifica que todavía se pueden emitir monedas
+    ∀ t ∈ trnsc: t.id_comprador ≠ 0 → t.id_comprador ∈ bc.tenedores ∧ bc.tenedores[t.id_comprador] ≥ t.monto --> controla que ningún comprador (salvo el 0 que es de creación) intente gastar más de lo que tiene: si id ≠ 0, t.id_comprador debe estar en el diccionario de tenedores y Y su saldo debe ser mayor o igual al monto de la transacción
+    	}
+    asegura { ---> se agrega el bloque ∧ se actualiza el total creado ∧ se actualizan los saldos 
+    bc.cadenaBloques = append(cadenaBloques₀, nuevoBloque) ∧
+    bc.totalCreado = min(totalCreado₀ + montoCreado, 3000) ∧
+    bc.tenedores = actualizarSaldos(tenedores₀, trnsc)
+    	}
+	}
+}
