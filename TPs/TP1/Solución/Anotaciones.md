@@ -55,26 +55,26 @@ Para que la especificación sea completa, tenemos que describir el estado de tod
 ---
 
 	[RENOMBRE DE TIPOS]
-
+ 
 Transacción = struct {
   id_transaccion: ℤ
   id_comprador: ℤ
   id_vendedor: ℤ
   monto: ℤ
 }
-
+ 
 Bloque = struct {
   id: ℤ
   transacciones: seq<Transacción>
 }
-
+ 
 TAD $Berretacoin {
   obs cadenaBloques: seq<Bloque>
   obs tenedores: dict<Z, Z>
   obs totalCreado: Z
-
+ 
 	[CONSTRUCTOR]
-
+ 
   proc berretacoinNuevo(): $Berretacoin{
     asegura {
     res.cadenaBloques = ⟨⟩ ∧
@@ -82,7 +82,7 @@ TAD $Berretacoin {
     res.totalCreado = 0
     	}
 	}
-
+ 
   proc agregarBloque(inout bc: $Berretacoin, in trnsc: seq<Transacción>){
     requiere {
 	cadenaBloques = cadenaBloques₀ ∧
@@ -97,8 +97,82 @@ TAD $Berretacoin {
     	}
     asegura { ---> se agrega el bloque ∧ se actualiza el total creado ∧ se actualizan los saldos 
     bc.cadenaBloques = append(cadenaBloques₀, nuevoBloque) ∧
-    bc.totalCreado = min(totalCreado₀ + montoCreado, 3000) ∧
-    bc.tenedores = actualizarSaldos(tenedores₀, trnsc)
+    bc.totalCreado = (totalCreado₀ + montoCreado ∧ bc.totalCreado ≤ 3000) ∧
+    bc.tenedores = actualizarSaldos(tenedores₀, trnsc) --> habría que definirla
     	}
 	}
 }
+
+
+---- VERSIÓN CON AUXILIARES
+
+	[RENOMBRE DE TIPOS]
+ 
+Transacción = struct {
+  id_transaccion: Z
+  id_comprador: Z
+  id_vendedor: Z
+  monto: Z
+}
+ 
+Bloque = struct {
+  id: ℤ
+  transacciones: seq<Transacción>
+}
+ 
+TAD $Berretacoin {
+  obs cadenaBloques: seq<Bloque>
+  obs tenedores: dict<Z, Z> --> key = id del usuario, value = saldo actual. sirve para, con actualizarSaldo, hacer un acumulador y ya tener el dict<id_usuario, saldo>
+  obs totalCreado: Z --> para limitar que el totalCreado de monedas no sea > 3000
+ }
+
+	[CONSTRUCTOR]
+ 
+  proc berretacoinNuevo(): $Berretacoin{
+    asegura {
+    res.cadenaBloques = ⟨⟩ ∧
+    res.tenedores = {} ∧
+    res.totalCreado = 0
+    	}
+	}
+
+proc agregarBloque(inout bc: $Berretacoin, in trnsc: seq<Transacción>) {
+    
+    requiere {
+        bc = bc₀ ∧
+
+        |trnsc| ≤ 50 ∧
+        transaccionesValidas(trnsc, bc₀.tenedores) ∧
+        creacionPermitida(trnsc, bc₀.totalCreado)
+    }
+
+    asegura {
+        bc.cadenaBloques = append(bc₀.cadenaBloques, nuevoBloque) ∧
+
+        bc.totalCreado = bc₀.totalCreado + montoCreado(trnsc) ∧ bc.totalCreado ≤ 3000 ∧
+
+        bc.tenedores = actualizarSaldos(bc₀.tenedores, trnsc)
+    }
+}
+
+en el asegura se agrega el bloque ∧ se actualiza el total creado ∧ se actualizan los saldos 
+
+
+aux montoCreado(trnsc: seq<Transacción>) : Z = ----> devuelve el monto de la transacción de creación si está presente al inicio, o 0 si no hay.
+    IfThenElse(|trnsc| > 0 ∧ trnsc[0].id_comprador = 0, trnsc[0].monto, 0)
+
+devuelve el monto monto de la primera transacción del bloque SOLO si es de creación (id_comprador = 0), sino devuelve 0. es como un verificador de creaciones, para usar el totalCreado de acumulador y que no se pase de 3000  
+
+pred transaccionesValidas(trnsc: seq<Transacción>, tenedores: dict<ℤ, ℤ>) {
+    (∀ t ∈ trnsc)(t.monto > 0 ∧ t.id_comprador ≠ t.id_vendedor ∧ (t.id_comprador ≠ 0 → (t.id_comprador ∈ tenedores ∧ tenedores[t.id_comprador] ≥ t.monto)))
+}
+
+no se permite mover 0 o una cantidad negativa ∧ no puede ser una transacción “con uno mismo” ∧ si el comprador no es el 0 (o sea, no es una transacción de creación), entonces: debe existir en el diccionario tenedores y debe tener suficiente (mayor o igual) saldo para la transacción
+
+pred creacionPermitida(trnsc: seq<Transacción>, totalCreado: ℤ) {
+    (|trnsc| = 0) ∨ (trnsc[0].id_comprador = 0 ↔ totalCreado < 3000)
+}
+
+verifica si no hay transacciones (no hay problema en este caso) ∨ si hay transacciones, la primera transacción puede ser de creación (id_comprador = 0) si y solo si todavía no se crearon 3000 monedas (totalCreado < 3000). si la primera transacción no es de creación, no le interesa y no impide otras transacciones, por lo que no se especifica
+es  "↔ totalCreado < 3000" porque si se crean "↔ totalCreado ≤ 3000", se está permitiendo crear un bloque de más, porque cuando se verifica que = 3000, se puede crear un bloque más (creo)
+
