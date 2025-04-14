@@ -116,7 +116,7 @@ Transacción = struct {
 }
  
 Bloque = struct {
-  id: ℤ
+  id: Z
   transacciones: seq<Transacción>
 }
  
@@ -176,3 +176,25 @@ pred creacionPermitida(trnsc: seq<Transacción>, totalCreado: ℤ) {
 verifica si no hay transacciones (no hay problema en este caso) ∨ si hay transacciones, la primera transacción puede ser de creación (id_comprador = 0) si y solo si todavía no se crearon 3000 monedas (totalCreado < 3000). si la primera transacción no es de creación, no le interesa y no impide otras transacciones, por lo que no se especifica
 es  "↔ totalCreado < 3000" porque si se crean "↔ totalCreado ≤ 3000", se está permitiendo crear un bloque de más, porque cuando se verifica que = 3000, se puede crear un bloque más (creo)
 
+----
+
+[agregarBLOQUE]
+
+el segundo requiere me convence más porque si el comprador es 0 no le verifica el saldo
+
+[hayIDSREPETIDOS]
+
+hayIdsRepetidos me parece mejor porque es más "directa" y no hace falta usar el esValida
+
+[proposición de NUEVO ASEGURA maximosTENEDORES]
+
+requiere{bc.bloques ≠ {}}
+asegura {
+  (∀id0 : id_comprador) (id0 ∈ res ↔ esUsuario(id0, bc.bloques)) ∧
+  (∀id1 : id_comprador) (esUsuario(id1, bc.bloques)) -> calculaSaldo(id0, bc.bloques, ⟨⟩) ≥ calculaSaldo(id1, bc.bloques, ⟨⟩)) ∧ 
+  ¬hayIdsRepetidos(res)
+}
+
+- siento que es más "directo" y mas legible, creo que cubre todo lo mismo que el asegura que tenemos ahora tomando directamente los ids y no una secuencia de ids
+- acá el calculaSaldo lo puse con seq vacías en la pos 2 de la tupla porque no sé si vamos a eliminar el st del calculaSaldo
+- nos ahorraríamos de hacer el tieneMasOIgualQueTodos y se reutiliza lo del ej1
