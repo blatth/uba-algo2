@@ -198,3 +198,24 @@ asegura {
 - siento que es más "directo" y mas legible, creo que cubre todo lo mismo que el asegura que tenemos ahora tomando directamente los ids y no una secuencia de ids
 - acá el calculaSaldo lo puse con seq vacías en la pos 2 de la tupla porque no sé si vamos a eliminar el st del calculaSaldo
 - nos ahorraríamos de hacer el tieneMasOIgualQueTodos y se reutiliza lo del ej1
+
+--------
+
+(∀i : Z)(0 ≤ i < |s| -> 
+    s[i].id_comprador = 0 ∨ 
+    calculaSaldo(s[i].id_comprador, BC_0.bloques, subseq(s, 0, i)) ≥ s[i]monto
+)
+
+i = 0 se cunmple automáticamente
+
+i = 1:
+
+s[1].comp = 50
+s[1].mont = 100
+subseq(s, 0, 1) = <(10, 0, 70, 1)>
+
+En BC_0.bloques el user no existía => saldo = 0 (irrelevante)
+En subseq(s, 0, 1) el user no aparece como comprador/vendedor => saldo = 0
+
+=> calculaSaldo(50, BC_0.bloques, <(10, 0, 70, 1)>) = 0
+=> 0 ≥ 100 -> NO se cumple
