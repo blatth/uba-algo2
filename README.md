@@ -19,3 +19,10 @@
 | 1  | [Intro a Java](https://github.com/blatth/uba-algo2/blob/master/Laboratorios/Talleres/Enunciados/TallerE1.pdf) | [Clase 1](https://github.com/blatth/uba-algo2/blob/master/Laboratorios/Laboratorio1.pdf) | [✎](https://github.com/blatth/uba-algo2/blob/master/Laboratorios/Talleres/Resoluciones/Taller1)
 | 2  | [Programación Orientada a Objetos](https://github.com/blatth/uba-algo2/blob/master/Laboratorios/Talleres/Enunciados/TallerE2.pdf) | [Clase 2](https://github.com/blatth/uba-algo2/blob/master/Laboratorios/Laboratorio2.pdf) | [✎](https://github.com/blatth/uba-algo2/blob/master/Laboratorios/Talleres/Resoluciones/Taller2)
 | 3  | [Listas enlazadas e iteradores](https://github.com/blatth/uba-algo2/blob/master/Laboratorios/Talleres/Enunciados/TallerE3.pdf) | [Clase 3](https://github.com/blatth/uba-algo2/blob/master/Laboratorios/Laboratorio3.2.pdf) y [Clase 4](https://github.com/blatth/uba-algo2/blob/master/Laboratorios/Laboratorio4.pdf) | [✎](https://github.com/blatth/uba-algo2/blob/master/Laboratorios/Talleres/Resoluciones/Taller3)
+
+## Trabajos prácticos
+
+| N° |                  Enunciado                       | Resolución |
+|----|--------------------------------------------------|------------|
+| 1  | [Especificación de TADs](https://github.com/blatth/uba-algo2/blob/main/TPs/TP1/TP1E.pdf) | [✎](https://github.com/blatth/uba-algo2/blob/main/TPs/TP1/TP1S.pdf)
+| 2  | | ✎
