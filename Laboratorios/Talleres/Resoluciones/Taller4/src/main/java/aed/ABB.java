@@ -4,29 +4,50 @@ import java.util.*;
 
 // Todos los tipos de datos "Comparables" tienen el método compareTo()
 // elem1.compareTo(elem2) devuelve un entero. Si es mayor a 0, entonces elem1 > elem2
+
 public class ABB<T extends Comparable<T>> implements Conjunto<T> {
-    // Agregar atributos privados del Conjunto
+    private Nodo _raiz;
+    private int _cardinal;
 
     private class Nodo {
-        // Agregar atributos privados del Nodo
+        T v;
+        Nodo izq;
+        Nodo der;
+        Nodo padre;
 
-        // Crear Constructor del nodo
+        Nodo (T valor){
+            v = valor;
+            izq = null;
+            der = null;
+            padre = null;
+        }
     }
 
     public ABB() {
-        throw new UnsupportedOperationException("No implementada aun");
+        _raiz = null;
+        _cardinal = 0;
     }
 
     public int cardinal() {
-        throw new UnsupportedOperationException("No implementada aun");
+        return _cardinal;
     }
 
     public T minimo(){
-        throw new UnsupportedOperationException("No implementada aun");
+        if (_raiz == null) throw new NoSuchElementException();
+        Nodo actual = _raiz;
+        while (actual.izq != null){
+            actual = actual.izq;
+        }
+        return actual.v;
     }
 
     public T maximo(){
-        throw new UnsupportedOperationException("No implementada aun");
+        if (_raiz == null) throw new NoSuchElementException();
+        Nodo actual = _raiz;
+        while (actual.der != null){
+            actual = actual.der;
+        }
+        return actual.v;
     }
 
     public void insertar(T elem){
