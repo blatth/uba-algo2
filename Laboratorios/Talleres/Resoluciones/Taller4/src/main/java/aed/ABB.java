@@ -60,18 +60,43 @@ public class ABB<T extends Comparable<T>> implements Conjunto<T> {
         Nodo padre = null;
         while (actual != null){
             int compare = elem.compareTo(actual.v);
-            if (compare < 0){
-                padre = actual;
-                actual = actual.izq;
-            }
             if (compare == 0){
                 return;
             }
+            padre = actual;
+            if (compare > 0){
+                actual = actual.der;
+            }
+            else{
+                actual = actual.izq;
+            }
         }
+        Nodo nuevo = new Nodo(elem);
+        nuevo.padre = padre;
+        if (elem.compareTo(padre.v) > 0){
+            padre.der = nuevo;
+        }
+        else{
+            padre.izq = nuevo;
+        }
+        _cardinal++;
     }
 
     public boolean pertenece(T elem){
-        throw new UnsupportedOperationException("No implementada aun");
+        Nodo actual = _raiz;
+        while (actual != null){
+            int compare = elem.compareTo(actual.v);
+            if (compare == 0){
+                return true;
+            }
+            if (compare > 0){
+                actual = actual.der;
+            }
+            else{
+                actual = actual.izq;
+            }
+        }
+        return false;
     }
 
         /* rec compareTo: sean elem1 y elem2 dos instancias de un mismo tipo de datos comparable,
@@ -84,15 +109,40 @@ public class ABB<T extends Comparable<T>> implements Conjunto<T> {
         Nodo actual = _raiz;
         while (actual != null){
             int compare = elem.compareTo(actual.v);
-            if (compare == 0) return actual;
-            if (compare < 0) actual = actual.izq;
+            if (compare == 0) {
+                return actual;
+            }
+            if (compare < 0) {
+                actual = actual.izq;
+            }
             else actual = actual.der;
         }
         return null;
     }
 
+    private void reemplazar(Nodo viejo, Nodo nuevo) {
+
+        if (viejo.padre == null) {
+            _raiz = nuevo;
+        } else if (viejo == viejo.padre.izq) {
+            viejo.padre.izq = nuevo;
+        } else {
+            viejo.padre.der = nuevo;
+        }
+        if (nuevo != null) {
+            nuevo.padre = viejo.padre;
+        }
+    }
+
+     /*         10       | Con este ejemplo, si hago reemplazar(15, 12) entra en el else porque 15 está a la derecha del
+               /  \      | padre. Lo cambio por el valor de nuevo y luego le asigno su padre
+              5    15    |
+                   /     |
+                  12     |
+     */
+
     public void eliminar(T elem){
-        throw new UnsupportedOperationException("No implementada aun");
+        ;
     }
 
     public String toString(){
