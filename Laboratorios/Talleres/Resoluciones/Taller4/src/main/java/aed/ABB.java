@@ -51,11 +51,44 @@ public class ABB<T extends Comparable<T>> implements Conjunto<T> {
     }
 
     public void insertar(T elem){
-        throw new UnsupportedOperationException("No implementada aun");
+        if (_raiz == null){
+            _raiz = new Nodo(elem);
+            _cardinal++;
+            return;
+        }
+        Nodo actual = _raiz;
+        Nodo padre = null;
+        while (actual != null){
+            int compare = elem.compareTo(actual.v);
+            if (compare < 0){
+                padre = actual;
+                actual = actual.izq;
+            }
+            if (compare == 0){
+                return;
+            }
+        }
     }
 
     public boolean pertenece(T elem){
         throw new UnsupportedOperationException("No implementada aun");
+    }
+
+        /* rec compareTo: sean elem1 y elem2 dos instancias de un mismo tipo de datos comparable,
+        luego elem1.compareTo(elem2) devuelve un entero:
+        1) > 0 si elem1 > elem2,
+        2) < 0 si elem1 < elem2
+        3) = 0 si elem1 = elem2 */
+
+    private Nodo buscarNodo(T elem){
+        Nodo actual = _raiz;
+        while (actual != null){
+            int compare = elem.compareTo(actual.v);
+            if (compare == 0) return actual;
+            if (compare < 0) actual = actual.izq;
+            else actual = actual.der;
+        }
+        return null;
     }
 
     public void eliminar(T elem){
