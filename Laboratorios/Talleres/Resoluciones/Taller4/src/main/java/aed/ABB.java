@@ -2,7 +2,7 @@ package aed;
 
 import java.util.*;
 
-// Todos los tipos de datos "Comparables" tienen el método compareTo()
+// Todos los tipos de datos "Comparables" tienen el metodo compareTo()
 // elem1.compareTo(elem2) devuelve un entero. Si es mayor a 0, entonces elem1 > elem2
 
 public class ABB<T extends Comparable<T>> implements Conjunto<T> {
@@ -41,7 +41,7 @@ public class ABB<T extends Comparable<T>> implements Conjunto<T> {
         return actual.v;
     }
 
-    public T maximo(){
+    public T maximo() {
         if (_raiz == null) throw new NoSuchElementException();
         Nodo actual = _raiz;
         while (actual.der != null){
@@ -50,7 +50,7 @@ public class ABB<T extends Comparable<T>> implements Conjunto<T> {
         return actual.v;
     }
 
-    public void insertar(T elem){
+    public void insertar(T elem) {
         if (_raiz == null){
             _raiz = new Nodo(elem);
             _cardinal++;
@@ -82,7 +82,7 @@ public class ABB<T extends Comparable<T>> implements Conjunto<T> {
         _cardinal++;
     }
 
-    public boolean pertenece(T elem){
+    public boolean pertenece(T elem) {
         Nodo actual = _raiz;
         while (actual != null){
             int compare = elem.compareTo(actual.v);
@@ -99,20 +99,46 @@ public class ABB<T extends Comparable<T>> implements Conjunto<T> {
         return false;
     }
 
-        /* rec compareTo: sean elem1 y elem2 dos instancias de un mismo tipo de datos comparable,
-        luego elem1.compareTo(elem2) devuelve un entero:
-        1) > 0 si elem1 > elem2,
-        2) < 0 si elem1 < elem2
-        3) = 0 si elem1 = elem2 */
+    public void eliminar(T elem) {
+        Nodo nodo = buscarNodo(elem);
 
-    private Nodo buscarNodo(T elem){
+        if (nodo == null){
+            return;
+        }
+        if (nodo.izq == null && nodo.der == null){ // caso 1: sin hijos
+            reemplazar(nodo, null);
+        }
+        else if (nodo.izq == null){ // caso 2a: solo hijo derecho
+            reemplazar(nodo, nodo.der);
+        }
+        else if (nodo.der == null){ // caso 2b: solo hijo izquierdo
+            reemplazar(nodo, nodo.izq);
+        }
+        else{ // caso 3: dos hijos
+            Nodo sucesor = nodoMin(nodo.der);
+            nodo.v = sucesor.v;
+
+            if (sucesor.der != null){ // elimino el sucesor, que seguro no tiene hijo izquierdo
+                reemplazar(sucesor, sucesor.der);
+            }
+            else{
+                reemplazar(sucesor, null);
+            }
+        }
+        _cardinal--;
+    }
+
+
+    // AUXS PARA ELIMINAR
+
+    private Nodo buscarNodo(T elem) {
         Nodo actual = _raiz;
         while (actual != null){
             int compare = elem.compareTo(actual.v);
-            if (compare == 0) {
+            if (compare == 0){
                 return actual;
             }
-            if (compare < 0) {
+            if (compare < 0){
                 actual = actual.izq;
             }
             else actual = actual.der;
@@ -120,16 +146,22 @@ public class ABB<T extends Comparable<T>> implements Conjunto<T> {
         return null;
     }
 
+    /* rec compareTo: sean elem1 y elem2 dos instancias de un mismo tipo de datos comparable,
+    luego elem1.compareTo(elem2) devuelve un entero:
+    1) > 0 si elem1 > elem2,
+    2) < 0 si elem1 < elem2
+    3) = 0 si elem1 = elem2 */
+
     private void reemplazar(Nodo viejo, Nodo nuevo) {
 
-        if (viejo.padre == null) {
+        if (viejo.padre == null){
             _raiz = nuevo;
-        } else if (viejo == viejo.padre.izq) {
+        } else if (viejo == viejo.padre.izq){
             viejo.padre.izq = nuevo;
         } else {
             viejo.padre.der = nuevo;
         }
-        if (nuevo != null) {
+        if (nuevo != null){
             nuevo.padre = viejo.padre;
         }
     }
@@ -141,23 +173,69 @@ public class ABB<T extends Comparable<T>> implements Conjunto<T> {
                   12     |
      */
 
-    public void eliminar(T elem){
-        ;
+    private Nodo nodoMin(Nodo elem) {
+        if (elem == null){
+            return null;
+        }
+        while (elem.izq != null){
+            elem = elem.izq;
+        }
+        return elem;
     }
 
-    public String toString(){
-        throw new UnsupportedOperationException("No implementada aun");
+    /* Devuelve el nodo con el val más pequeño bajando por la rama izquierda hasta llegar al nodo que no tenga hijo
+       a su izquierda. Me va a servir para buscar el mínimo de la rama derecha de hijos de un nodo. */
+
+    public String toString() {
+        Iterador<T> iterador = iterador();
+        String res = "{";
+
+        if (iterador.haySiguiente()){
+            res += iterador.siguiente();  // solo llamo si hay algún elemento
+            while (iterador.haySiguiente()){
+                res += "," + iterador.siguiente();
+            }
+        }
+
+        res += "}";
+        return res;
     }
+
+
 
     private class ABB_Iterador implements Iterador<T> {
         private Nodo _actual;
 
-        public boolean haySiguiente() {            
-            throw new UnsupportedOperationException("No implementada aun");
+        public ABB_Iterador() {
+            if (_raiz != null){
+                _actual = nodoMin(_raiz);
+            }
+            else {
+                _actual = null;
+            }
         }
-    
+
+        public boolean haySiguiente() {
+            return _actual != null;
+        }
+
         public T siguiente() {
-            throw new UnsupportedOperationException("No implementada aun");
+            if (_actual == null) throw new NoSuchElementException();
+            T valor = _actual.v;
+
+            if (_actual.der != null){ // caso 1: tiene subárbol derecho => va al mínimo de esa rama
+                _actual = nodoMin(_actual.der);
+            }
+            else { // caso 2: no tiene hijo derecho => sube hasta venir de la izquierda
+                Nodo padre = _actual.padre;
+                while (padre != null && _actual == padre.der){
+                    _actual = padre;
+                    padre = padre.padre;
+                }
+                _actual = padre;
+            }
+
+            return valor;
         }
     }
 
@@ -165,4 +243,7 @@ public class ABB<T extends Comparable<T>> implements Conjunto<T> {
         return new ABB_Iterador();
     }
 
+
+
 }
+
