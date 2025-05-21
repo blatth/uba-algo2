@@ -197,13 +197,16 @@ public class ABB<T extends Comparable<T>> implements Conjunto<T> {
     private class ABB_Iterador implements Iterador<T> {
         private Nodo _actual; // pensarlo como siguienteNodo
 
-        public ABB_Iterador() {
-            if (_raiz != null) {
+        private ABB_Iterador() {
+            if (_raiz != null) { // si el árbol no está vacío, el iterador se posiciona en el nodoMin del árbol
                 _actual = nodoMin(_raiz);
             } else {
-                _actual = null;
+                _actual = null; // si el árbol está vacío, _actual = null => haySiguiente() = false desde el principio
             }
         }
+
+    // verifico si el árbol tiene al menos un nodo. si no tiene, entonces no hay elems por recorrer (no hay siguiente)
+
 
         public boolean haySiguiente() {
             return _actual != null;
