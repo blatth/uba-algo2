@@ -121,7 +121,6 @@ public class ABB<T extends Comparable<T>> implements Conjunto<T> {
         _cardinal--;
     }
 
-
     // AUXS PARA ELIMINAR
 
     private Nodo buscarNodo(T elem) {
@@ -138,11 +137,11 @@ public class ABB<T extends Comparable<T>> implements Conjunto<T> {
         return null;
     }
 
-    /* rec compareTo: sean elem1 y elem2 dos instancias de un mismo tipo de datos comparable,
-    luego elem1.compareTo(elem2) devuelve un entero:
-    1) > 0 si elem1 > elem2,
-    2) < 0 si elem1 < elem2
-    3) = 0 si elem1 = elem2 */
+/* rec compareTo: sean elem1 y elem2 dos instancias de un mismo tipo de datos comparable,
+luego elem1.compareTo(elem2) devuelve un entero:
+1) > 0 si elem1 > elem2,
+2) < 0 si elem1 < elem2
+3) = 0 si elem1 = elem2 */
 
     private void reemplazar(Nodo viejo, Nodo nuevo) {
 
@@ -158,12 +157,12 @@ public class ABB<T extends Comparable<T>> implements Conjunto<T> {
         }
     }
 
-     /*         10       | Con este ejemplo, si hago reemplazar(15, 12) entra en el else porque 15 está a la derecha del
-               /  \      | padre. Lo cambio por el valor de nuevo y luego le asigno su padre
-              5    15    |
-                   /     |
-                  12     |
-     */
+/*         10       | Con este ejemplo, si hago reemplazar(15, 12) entra en el else porque 15 está a la derecha del
+          /  \      | padre. Lo cambio por el valor de nuevo y luego le asigno su padre
+         5    15    |
+              /     |
+             12     |
+*/
 
     private Nodo nodoMin(Nodo elem) {
         if (elem == null) {
@@ -175,8 +174,8 @@ public class ABB<T extends Comparable<T>> implements Conjunto<T> {
         return elem;
     }
 
-    /* Devuelve el nodo con el val más pequeño bajando por la rama izquierda hasta llegar al nodo que no tenga hijo
-       a su izquierda. Me va a servir para buscar el mínimo de la rama derecha de hijos de un nodo. */
+/* Devuelve el nodo con el val más pequeño bajando por la rama izquierda hasta llegar al nodo que no tenga hijo
+a su izquierda. Me va a servir para buscar el mínimo de la rama derecha de hijos de un nodo. */
 
     public String toString() {
         Iterador<T> iterador = iterador();
@@ -205,18 +204,18 @@ public class ABB<T extends Comparable<T>> implements Conjunto<T> {
             }
         }
 
-    // verifico si el árbol tiene al menos un nodo. si no tiene, entonces no hay elems por recorrer (no hay siguiente)
+// verifico si el árbol tiene al menos un nodo. si no tiene, entonces no hay elems por recorrer (no hay siguiente)
 
 
         public boolean haySiguiente() {
             return _actual != null;
         }
 
-        /* _actual en realidad está apuntando al siguiente nodo que se va a verificar cuando el iterador vaya
-        recorriendo, por lo que en realidad puedo pensar que se llama siguienteNodo o algo así para que sea más
-        intuitivo. por ej: en siguiente, _actual.v devuelve el valor del nodo actual, pero cuando se actualiza
-        _actual, ese es el siguiente nodo que se va a iterar. en el caso de que este último sea null, se rompe y no hay
-        siguiente */
+/* _actual en realidad está apuntando al siguiente nodo que se va a verificar cuando el iterador vaya
+recorriendo, por lo que en realidad puedo pensar que se llama siguienteNodo o algo así para que sea más
+intuitivo. por ej: en siguiente, _actual.v devuelve el valor del nodo actual, pero cuando se actualiza
+_actual, ese es el siguiente nodo que se va a iterar. en el caso de que este último sea null, se rompe y no hay
+siguiente */
 
         public T siguiente() {
             if (_actual == null) throw new NoSuchElementException();
