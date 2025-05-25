@@ -11,7 +11,7 @@
 | 3   | [TADs](https://github.com/blatth/uba-algo2/blob/main/Teoricas/Teorica3.pdf) | [📎](https://github.com/blatth/uba-algo2/blob/main/Gu%C3%ADas/Guia3.pdf) | [📎](https://github.com/blatth/uba-algo2/blob/main/Apuntes/TADs.pdf) | [📝](https://github.com/blatth/uba-algo2/blob/main/Practicas/Practica2.pdf)
 | 4   | [Correctitud](https://github.com/blatth/uba-algo2/blob/main/Teoricas/Teorica4.pdf) | [📎](https://github.com/blatth/uba-algo2/blob/main/Gu%C3%ADas/Guia4.1.pdf) | | [📝](https://github.com/blatth/uba-algo2/blob/main/Practicas/Practica3.pdf)
 | 5   | [Invariantes](https://github.com/blatth/uba-algo2/blob/main/Teoricas/Teorica5.pdf) | [📎](https://github.com/blatth/uba-algo2/blob/main/Gu%C3%ADas/Guia4.2.pdf) | | [📝](https://github.com/blatth/uba-algo2/blob/main/Practicas/Practica4.pdf)
-| 6   | [Análisis de la complejidad de algoritmos](https://github.com/blatth/uba-algo2/blob/main/Teoricas/Teorica6.pdf) | [📎] | | [📝]
+| 6   | [Análisis de la complejidad de algoritmos](https://github.com/blatth/uba-algo2/blob/main/Teoricas/Teorica6.pdf) | [📎](https://github.com/blatth/uba-algo2/blob/main/Gu%C3%ADas/Guia5.pdf) | | [📝](https://github.com/blatth/uba-algo2/blob/main/Practicas/Practica5.pdf)
 | 7   | [Diseño de TADs](https://github.com/blatth/uba-algo2/blob/main/Teoricas/Teorica7.pdf) | [📎] | | [📝]
 | 8   | [Árboles binarios de búsqueda y AVL](https://github.com/blatth/uba-algo2/blob/main/Teoricas/Teorica8.pdf) | [📎] | | [📝]
 
