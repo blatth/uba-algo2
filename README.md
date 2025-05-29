@@ -2,6 +2,12 @@
 
 ## 1er Cuatrimestre - 2025
 
+## Recursos
+
+[Cormen]((https://github.com/blatth/uba-algo2/blob/main/Apuntes/Cormen.pdf))
+[IntelliJ](https://www.jetbrains.com/idea/download/?section=linux)
+[Clases grabadas](https://www.youtube.com/@AED2DCUBA)
+
 ## Clases
 
 | N° | Tema                                                                                          | Guía | Apunte | Prácticas |
@@ -12,7 +18,7 @@
 | 4   | [Correctitud](https://github.com/blatth/uba-algo2/blob/main/Teoricas/Teorica4.pdf) | [📎](https://github.com/blatth/uba-algo2/blob/main/Gu%C3%ADas/Guia4.1.pdf) | | [📝](https://github.com/blatth/uba-algo2/blob/main/Practicas/Practica3.pdf)
 | 5   | [Invariantes](https://github.com/blatth/uba-algo2/blob/main/Teoricas/Teorica5.pdf) | [📎](https://github.com/blatth/uba-algo2/blob/main/Gu%C3%ADas/Guia4.2.pdf) | | [📝](https://github.com/blatth/uba-algo2/blob/main/Practicas/Practica4.pdf)
 | 6   | [Análisis de la complejidad de algoritmos](https://github.com/blatth/uba-algo2/blob/main/Teoricas/Teorica6.pdf) | [📎](https://github.com/blatth/uba-algo2/blob/main/Gu%C3%ADas/Guia5.pdf) | | [📝](https://github.com/blatth/uba-algo2/blob/main/Practicas/Practica5.pdf)
-| 7   | [Diseño de TADs](https://github.com/blatth/uba-algo2/blob/main/Teoricas/Teorica7.pdf) | [📎] | | [📝]
+| 7   | [Diseño de TADs](https://github.com/blatth/uba-algo2/blob/main/Teoricas/Teorica7.pdf) | [📎](https://github.com/blatth/uba-algo2/blob/main/Gu%C3%ADas/Guia6.pdf)  |[📎1](https://github.com/blatth/uba-algo2/blob/main/Apuntes/DiseñoTADs.pdf), [📎2](https://github.com/blatth/uba-algo2/blob/main/Apuntes/ModulosBasicos.pdf) | [📝](https://github.com/blatth/uba-algo2/blob/main/Practicas/Practica6.pdf)
 | 8   | [Árboles binarios de búsqueda y AVL](https://github.com/blatth/uba-algo2/blob/main/Teoricas/Teorica8.pdf) | [📎] | | [📝]
 
 ## Talleres
@@ -29,4 +35,4 @@
 | N° |                  Enunciado                       | Resolución |
 |----|--------------------------------------------------|------------|
 | 1  | [Especificación de TADs](https://github.com/blatth/uba-algo2/blob/main/TPs/TP1/TP1E.pdf) | [✎](https://github.com/blatth/uba-algo2/blob/main/TPs/TP1/TP1S.pdf)
-| 2  | | [🖊️]
+| 2  | [Diseño e implementación de estructuras]() | [🖊️]()
