@@ -4,9 +4,9 @@
 
 ## Recursos
 
-[Cormen]((https://github.com/blatth/uba-algo2/blob/main/Apuntes/Cormen.pdf))
-[IntelliJ](https://www.jetbrains.com/idea/download/?section=linux)
-[Clases grabadas](https://www.youtube.com/@AED2DCUBA)
+- [Cormen](https://github.com/blatth/uba-algo2/blob/main/Apuntes/Cormen.pdf)
+- [IntelliJ](https://www.jetbrains.com/idea/download/?section=linux)
+- [Clases grabadas](https://www.youtube.com/@AED2DCUBA)
 
 ## Clases
 
