@@ -34,5 +34,5 @@
 
 | N° |                  Enunciado                       | Resolución |
 |----|--------------------------------------------------|------------|
-| 1  | [Especificación de TADs](https://github.com/blatth/uba-algo2/blob/main/TPs/TP1/TP1E.pdf) | [✎](https://github.com/blatth/uba-algo2/blob/main/TPs/TP1/TP1S.pdf)
+| 1  | [Especificación de TADs](https://github.com/blatth/uba-algo2/blob/main/TPs/TP1/TP1E.pdf) | [🖊️](https://github.com/blatth/uba-algo2/blob/main/TPs/TP1/TP1S.pdf)
 | 2  | [Diseño e implementación de estructuras](https://github.com/blatth/uba-algo2/blob/main/TPs/TP1/TP2E.pdf) | [🖊️](https://github.com/blatth/uba-algo2/blob/main/TPs/TP1/Solucion)
