@@ -3,8 +3,8 @@
 # **Estructuras**
 
 **Clase**: Berretacoin
--  List<Bloque> bloques → cadena de bloques. solo se agrega al final y se accede al último bloque - **O(1)**
-- int[] saldos → se accede a los saldos directamente para reducir complejidad - **O(1)**
+-  List<Bloque> bloques → cadena de bloques. solo se agrega al final y se accede al último bloque. acá es una lista porque su longitud tiene que modificarse constantemente y ya tiene operaciones para acceder agregar al final (_add_) y se puede hacer _get_ del último bloque. lo que no estoy seguro es la complejidad de estas operaciones, _creo_ que deberían ser **O(1)**
+- int[] saldos → es un array (o sea, longitud fija) de un solo elem, entonces accede a los saldos de forma más directa, se reduce complejidad (int P = 200; int[] saldos = new int[P + 1]; saldos[105] = 350 accede directo al saldo id = 350) - **O(1)**
 - heap<UsuarioSaldo> maxTenedores → saldos ordenados de mayor a menor - **O(log $n_b$)**
 → a implementar: agregarBloque, hackearTx, etc
 
@@ -30,7 +30,7 @@
 
 **Tabla de complejidades**
 
-![image.png](image.png)
+![image.png](attachment:8de6f1d0-fb9e-402a-ba19-b2ec7baa5434:image.png)
 
 En heap, el máximo supongo que es O(1).
 
@@ -45,8 +45,6 @@ En heap, el máximo supongo que es O(1).
 [**Teórica tries/hash**](https://github.com/blatth/uba-algo2/blob/main/Teoricas/Teorica10.pdf)
 
 **Cormen:**
-
-De estas definiciones de max-heap habría que implementar lo último: **max-heap-insert, max-heap-extract-max, max-heap-maximum,** todas O(log n)
 
 ![image.png](image%201.png)
 
