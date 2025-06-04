@@ -30,7 +30,7 @@
 
 **Tabla de complejidades**
 
-![image.png](attachment:8de6f1d0-fb9e-402a-ba19-b2ec7baa5434:image.png)
+![image.png](image.png)
 
 En heap, el máximo supongo que es O(1).
 
