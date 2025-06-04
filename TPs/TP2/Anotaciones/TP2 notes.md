@@ -38,13 +38,13 @@ En heap, el máximo supongo que es O(1).
 
 ## Apuntes
 
-[Apunte de la materia](https://github.com/blatth/uba-algo2/blob/main/Apuntes/AEDGen.pdf)
+[**Apunte de la materia**](https://github.com/blatth/uba-algo2/blob/main/Apuntes/AEDGen.pdf)
 
 [**Teórica heaps**](https://github.com/blatth/uba-algo2/blob/main/Teoricas/Teorica9.pdf)
 
 [**Teórica tries/hash**](https://github.com/blatth/uba-algo2/blob/main/Teoricas/Teorica10.pdf)
 
-**Cormen:**
+**Cormen**:
 
 ![image.png](image%201.png)
 
