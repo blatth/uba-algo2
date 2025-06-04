@@ -3,30 +3,30 @@
 # **Estructuras**
 
 **Clase**: Berretacoin
-|-  List<Bloque> bloques → cadena de bloques. solo se agrega al final y se accede al último bloque - O(1)
-|- int[] saldos → se accede a los saldos directamente para reducir complejidad - O(1)
-|- heap<UsuarioSaldo> maxTenedores → saldos ordenados de mayor a menor - O(log $n_b$)
+-  List<Bloque> bloques → cadena de bloques. solo se agrega al final y se accede al último bloque - **O(1)**
+- int[] saldos → se accede a los saldos directamente para reducir complejidad - **O(1)**
+- heap<UsuarioSaldo> maxTenedores → saldos ordenados de mayor a menor - **O(log $n_b$)**
 → a implementar: agregarBloque, hackearTx, etc
 
 **Clase**: Bloque
-|- List<Transaccion> transacciones → transacciones ordenadas por id - txUltimoBloque sería O($n_b$)
-|- heap<Transaccion> maxPorMonto → transacciones ordenadas por monto, de acá se extrae hackearTx (la mayor) - O(log $n_b$) y txMayorValorUltimoBloque() *debería* ser O(1)
-|- int sumaMontosNoCreacion → *
-|- int cantidadNoCreacion → * con estas 2 se calcula el monto promedio sin tener que recorrer siempre la lista - O(1)
+- List<Transaccion> transacciones → transacciones ordenadas por id - txUltimoBloque sería **O($n_b$)**
+- heap<Transaccion> maxPorMonto → transacciones ordenadas por monto, de acá se extrae hackearTx (la mayor) - O(log $n_b$) y txMayorValorUltimoBloque() *debería* ser **O(1)**
+- int sumaMontosNoCreacion → *
+- int cantidadNoCreacion → * con estas 2 se calcula el monto promedio sin tener que recorrer siempre la lista - **O(1)**
 
 **Clase**: Transaccion
-|- int id
-|- int emisor
-|- int receptor
-|- int monto
+- int id
+- int emisor
+- int receptor
+- int monto
 
 → tupla (id, e, r, m) donde debería poder compararse por montos (para ordenar el heap) y por id (para extraer cuál es el id de la de mayor txMayorValorUltimoBloque)
 
 **Clase**: UsuarioSaldo
-|- int usuario
-|- int saldo
+- int usuario
+- int saldo
 
-→ tupla de (u, s) donde se debería implementar como un comparador que sea un heap-max (??), así nos aseguramos que la raíz siempre es el máximo elemento (”cada nodo es **mayor o igual** que sus hijos”). creo que si hay empate de ids no se rompe la complejidad y sigue siendo O(1)
+→ tupla de (u, s) donde se debería implementar como un comparador que sea un heap-max (??), así nos aseguramos que la raíz siempre es el máximo elemento (”cada nodo es **mayor o igual** que sus hijos”). creo que si hay empate de ids no se rompe la complejidad y sigue siendo **O(1)**
 
 **Tabla de complejidades**
 
