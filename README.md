@@ -19,7 +19,9 @@
 | 5   | [Invariantes](https://github.com/blatth/uba-algo2/blob/main/Teoricas/Teorica5.pdf) | [📎](https://github.com/blatth/uba-algo2/blob/main/Gu%C3%ADas/Guia4.2.pdf) | | [📝](https://github.com/blatth/uba-algo2/blob/main/Practicas/Practica4.pdf)
 | 6   | [Análisis de la complejidad de algoritmos](https://github.com/blatth/uba-algo2/blob/main/Teoricas/Teorica6.pdf) | [📎](https://github.com/blatth/uba-algo2/blob/main/Gu%C3%ADas/Guia5.pdf) | | [📝](https://github.com/blatth/uba-algo2/blob/main/Practicas/Practica5.pdf)
 | 7   | [Diseño de TADs](https://github.com/blatth/uba-algo2/blob/main/Teoricas/Teorica7.pdf) | [📎](https://github.com/blatth/uba-algo2/blob/main/Gu%C3%ADas/Guia6.pdf)  |[📎1](https://github.com/blatth/uba-algo2/blob/main/Apuntes/DiseñoTADs.pdf), [📎2](https://github.com/blatth/uba-algo2/blob/main/Apuntes/ModulosBasicos.pdf) | [📝](https://github.com/blatth/uba-algo2/blob/main/Practicas/Practica6.pdf)
-| 8   | [Árboles binarios de búsqueda y AVL](https://github.com/blatth/uba-algo2/blob/main/Teoricas/Teorica8.pdf) | [📎] | | [📝]
+| 8   | [Árboles binarios de búsqueda y AVL](https://github.com/blatth/uba-algo2/blob/main/Teoricas/Teorica8.pdf) |  | | 
+| 9   | [Colas de prioridad - Heaps](https://github.com/blatth/uba-algo2/blob/main/Teoricas/Teorica9.pdf) |  | | 
+| 10  | [Árboles binarios de búsqueda y AVL](https://github.com/blatth/uba-algo2/blob/main/Teoricas/Teorica10.pdf) |  | | 
 
 ## Talleres
 
