@@ -21,7 +21,7 @@
 | 7   | [Diseño de TADs](https://github.com/blatth/uba-algo2/blob/main/Teoricas/Teorica7.pdf) | [📎](https://github.com/blatth/uba-algo2/blob/main/Gu%C3%ADas/Guia6.pdf)  |[📎1](https://github.com/blatth/uba-algo2/blob/main/Apuntes/DiseñoTADs.pdf), [📎2](https://github.com/blatth/uba-algo2/blob/main/Apuntes/ModulosBasicos.pdf) | [📝](https://github.com/blatth/uba-algo2/blob/main/Practicas/Practica6.pdf)
 | 8   | [Árboles binarios de búsqueda y AVL](https://github.com/blatth/uba-algo2/blob/main/Teoricas/Teorica8.pdf) |  | | 
 | 9   | [Colas de prioridad - Heaps](https://github.com/blatth/uba-algo2/blob/main/Teoricas/Teorica9.pdf) |  | | 
-| 10  | [Tries - Hash - Diseño de conjuntos](https://github.com/blatth/uba-algo2/blob/main/Teoricas/Teorica10) |  | | 
+| 10  | [Tries - Hash - Diseño de conjuntos](https://github.com/blatth/uba-algo2/blob/main/Teoricas/Teorica10.pdf) |  | | 
 
 ## Talleres
 
