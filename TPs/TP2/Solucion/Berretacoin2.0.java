@@ -5,9 +5,9 @@ package aed;
 
 public class Berretacoin {
 
-    private ListaEnlazada bloque;
-    private Handle id_saldos; // handles
-    private heapMax usuario;
+    private ListaEnlazada<Bloque> bloque;
+    private Handle<Usuario> handles; // handles
+    private heapMax<Usuario> usuarios;
 
     public Berretacoin(int n_usuarios){ // O(p)
         // O(p) Porque estamos creando un arreglo de handles de tamaño P
@@ -63,8 +63,8 @@ public class Berretacoin {
 
 public class bloque {
 
-    private ListaEnlazada Transaccion;
-    private heapMax transacciones;
+    private ListaEnlazada<Transaccion> transacciones;
+    private heapMax<Transaccion> heap;
     private int sumaMontos; // no sumar la transacción de creación
     // Como nos da la longitud .size de lista doblelmente enlazada le restamos 1 por la de creación
 
@@ -89,7 +89,7 @@ public class heapMax { // ver handle
 
 }
 
-public class Usuario {
+public class usuario {
 
     private int id_usuario;
     private int saldo;
