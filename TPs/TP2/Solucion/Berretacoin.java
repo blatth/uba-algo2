@@ -37,7 +37,7 @@ public class Berretacoin {
     }
 
     public Transaccion txMayorValorUltimoBloque() { // O(1)
-        Bloque ultimo = cadBloques.obtener(cadBloques.longitud() - 1);
+        Bloque ultimo = cadBloques.obtener(cadBloques.size() - 1);
         return ultimo.txMayorValor();
     }
 
@@ -50,7 +50,7 @@ public class Berretacoin {
     }
 
     public int montoMedioUltimoBloque() { // O(1)
-        Bloque ultimo = cadBloques.obtener(cadBloques.longitud() - 1);
+        Bloque ultimo = cadBloques.obtener(cadBloques.size() - 1);
         return ultimo.promedioMontos();
     }
 
