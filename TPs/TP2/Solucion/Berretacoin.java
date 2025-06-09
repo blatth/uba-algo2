@@ -38,7 +38,7 @@ public class Berretacoin {
 
     public Transaccion txMayorValorUltimoBloque() { // O(1)
         Bloque ultimo = cadBloques.obtener(cadBloques.size() - 1);
-        return ultimo.txMayorValor();
+        return ultimo.obtenerMaximaTransaccion();
     }
 
     public Transaccion[] txUltimoBloque(){
