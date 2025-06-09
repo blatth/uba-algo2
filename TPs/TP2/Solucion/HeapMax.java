@@ -4,13 +4,13 @@ public class HeapMax<T extends Comparable<T>> {
     private Handle<T>[] heap;
     private int size;
 
-    
-    public HeapMax(int capacidad) {
+
+    public HeapMax(int capacidad) { // para crear un heap vacío con capacidad fija (hay que usarlo con agregarElemento) - O(n*log n) creo
         heap = (Handle<T>[]) new Handle[capacidad];
         size = 0;
     }
 
-    public HeapMax(Handle<T>[] elementos, int cantidad) {
+    public HeapMax(Handle<T>[] elementos, int cantidad) { // para crear un heap directamente con un array, es literalmente un heapify - O(n)
         this.heap = elementos;
         this.size = cantidad;
         for (int i = (size - 1) / 2; i >= 0; i--) { // reordeno el heap desde los nodos del medio para arriba
