@@ -51,7 +51,7 @@ public class Bloque {
     }
 
     public int promedioMontos() { // para usar en montoMedioUltimoBloque
-        int n = transacciones.longitud() - 1;
+        int n = transacciones.size() - 1;
         if (n > 0) {
             return sumaMontos / n;
         } else {
@@ -60,7 +60,7 @@ public class Bloque {
 }
 
     public int numeroTransacciones() {
-        return transacciones.longitud();
+        return transacciones.size();
     }
 
     public ListaEnlazada<Transaccion> getTransacciones() {
