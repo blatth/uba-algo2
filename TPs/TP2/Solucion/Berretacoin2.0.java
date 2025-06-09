@@ -7,7 +7,7 @@ public class Berretacoin {
 
     private ListaEnlazada<Bloque> bloque;
     private Handle<Usuario> handles; // handles
-    private heapMax<Usuario> usuarios;
+    private HeapMax<Usuario> usuarios;
 
     public Berretacoin(int n_usuarios){ // O(p)
         // O(p) Porque estamos creando un arreglo de handles de tamaño P
@@ -64,7 +64,7 @@ public class Berretacoin {
 public class bloque {
 
     private ListaEnlazada<Transaccion> transacciones;
-    private heapMax<Transaccion> heap;
+    private HeapMax<Transaccion> heap;
     private int sumaMontos; // no sumar la transacción de creación
     // Como nos da la longitud .size de lista doblelmente enlazada le restamos 1 por la de creación
 
@@ -74,9 +74,9 @@ public class heapMax { // ver handle
 
     // vos tenes que hacer el heapify a partir del arreglo de saldos
 
-    public heapMax agregarElemento()[ // encolar O(log x)
+    public heapMax agregarElemento(){ // encolar O(log x)
 
-    ]
+    }
     public void obtenerMaximo(){ // consultarMax O(1)
 
     }
