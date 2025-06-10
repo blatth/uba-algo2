@@ -44,14 +44,17 @@ public class Berretacoin {
             usuarios.actualizar(handleVendedor);
         } // O(n_b * log(P)) : para cada transaccion hacemos dos actualizaciones, cada una en O(log P)
 
-        Bloque nuevoBloque = new Bloque(transacciones.length);
+        int idMax = 0;
+        for (Transaccion t : transacciones) {
+            if (t.id() > idMax) idMax = t.id();
+        }
+
+        Bloque nuevoBloque = new Bloque(idMax + 1);
         for (Transaccion t : transacciones) {
             nuevoBloque.agregarTransaccion(t);
         }
+
         bloques.agregarAtras(nuevoBloque);
-
-        // O(n_b * log(n_b)) : para cada transaccion agregamos a un heap de tamaño a lo sumo n_b. El resto son O(1).
-
     }
 
     public Transaccion txMayorValorUltimoBloque() {
@@ -105,14 +108,7 @@ public class Berretacoin {
             v.saldo -= t.monto();
             usuarios.actualizar(hV);
         }
-
-        ListaEnlazada<Transaccion> lista = ult.getTransacciones(); // elimino siempre (cuando también es de creación) de ListaEnlazada
-        for (int i = 0; i < lista.longitud(); i++) {
-            if (lista.obtener(i).id() == t.id()) {
-                lista.eliminar(i);
-                break;
-            }
-        }
+        ult.eliminarTransaccionPorId(t.id());
     }
 }
 

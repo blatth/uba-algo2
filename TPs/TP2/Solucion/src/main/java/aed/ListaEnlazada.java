@@ -14,6 +14,14 @@ public class ListaEnlazada<T> { // esto sería como declarar los obs de un TAD
         Nodo(T v) {valor = v;}
     }
 
+    public class HandleLista {
+        private Nodo nodo;
+
+        private HandleLista(Nodo nodo) {
+            this.nodo = nodo;
+        }
+    }
+
     public ListaEnlazada() { // creación
         this.size = 0;
         this.primero = null;
@@ -55,6 +63,20 @@ public class ListaEnlazada<T> { // esto sería como declarar los obs de un TAD
         this.size = size + 1;
     }
 
+    public HandleLista agregarAtrasHandle(T elem) {
+        Nodo nuevoNodo = new Nodo(elem);
+        if (this.size == 0) {
+            this.primero = nuevoNodo;
+            this.ultimo = nuevoNodo;
+        } else {
+            this.ultimo.sig = nuevoNodo;
+            nuevoNodo.ant = this.ultimo;
+            this.ultimo = nuevoNodo;
+        }
+        this.size++;
+        return new HandleLista(nuevoNodo);
+    }
+
 // los siguientes ejercicios recorrí el índice de esta forma por temas de complejidad. al recorrer en mitades, en el peor de los casos  el costo es O(n), en el mejor, O(n/2)
 
     public T obtener(int i) {
@@ -87,7 +109,6 @@ public class ListaEnlazada<T> { // esto sería como declarar los obs de un TAD
             nodoActual = nodoActual.ant;
         }
     }
-
          if (nodoActual.ant != null) { // si no es el primero, su anterior (ant) debe apuntar al siguiente (sig)
         nodoActual.ant.sig = nodoActual.sig;
         } else { // si es el primero, actualiza las referencias primero
@@ -101,6 +122,24 @@ public class ListaEnlazada<T> { // esto sería como declarar los obs de un TAD
     }
 
     size --;
+    }
+
+    public void eliminarHandle(HandleLista h) {
+        Nodo nodoActual = h.nodo;
+
+        if (nodoActual.ant != null) {
+            nodoActual.ant.sig = nodoActual.sig;
+        } else {
+            primero = nodoActual.sig;
+        }
+
+        if (nodoActual.sig != null) {
+            nodoActual.sig.ant = nodoActual.ant;
+        } else {
+            ultimo = nodoActual.ant;
+        }
+
+        size--;
     }
 
     public void modificarPosicion(int indice, T elem) {
