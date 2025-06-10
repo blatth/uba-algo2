@@ -15,7 +15,7 @@ public class Bloque {
     public void agregarTransaccion(Transaccion t) {
         transacciones.agregarAtras(t); // O(1)
         heap.agregarElemento(t); // O(log n_b)
-        if (t.id_vendedor() != 0) { // no hay que tener en cuenta las de creación
+        if (t.id_comprador() != 0) { // no hay que tener en cuenta las de creación
             sumaMontos += t.monto(); // O(1), solo si no es creación
         }
     }
