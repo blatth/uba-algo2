@@ -5,18 +5,6 @@ public class Bloque {
     private HeapMax<Transaccion> heap;
     private int sumaMontos;
 
-    public Bloque(Transaccion[] transc) {
-        transacciones = new ListaEnlazada<>(); // creo una lista doblemente enlazada de transacciones para acumular
-            Handle<Transaccion>[] handles = new Handle[transc.length]; // creo un handle con la misma len que transc (el input)
-            for (int i = 0; i < transc.length; i++) { // itero sobre transc (el input)
-                transacciones.agregarAtras(transc[i]); // agrego en la listaenlazada los elem de mi transc (el input)
-                if (transc[i].id_vendedor() != 0) { // no tengo en cuenta la creación
-                    sumaMontos += transc[i].monto(); // sumo los montos de todos los demás valores
-                }
-                handles[i] = new Handle<>(transc[i], i); // guardo los valores y la posición de cada uno en el array de handles
-            }
-            heap = new HeapMax<>(handles); // creo un heap que organiza todas las transacciones según heapmax
-        }
 
     public Bloque(int capacidad) {
         this.transacciones = new ListaEnlazada<Transaccion>();
@@ -50,14 +38,19 @@ public class Bloque {
         return sumaMontos;
     }
 
-    public int promedioMontos() { // para usar en montoMedioUltimoBloque
-        int n = transacciones.longitud() - 1;
+    public int promedioMontos() {
+        int n = 0;
+        for (int i = 0; i < transacciones.longitud(); i++) {
+            if (transacciones.obtener(i).id_comprador() != 0) {
+                n++;
+            }
+        }
         if (n > 0) {
             return sumaMontos / n;
         } else {
             return 0;
+        }
     }
-}
 
     public int numeroTransacciones() {
         return transacciones.longitud();

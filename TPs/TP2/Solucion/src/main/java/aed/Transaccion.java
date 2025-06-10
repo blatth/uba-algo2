@@ -22,6 +22,18 @@ public class Transaccion implements Comparable<Transaccion> {
         }
     }
 
+
+    @Override
+    public String toString() {
+        return "Transaccion[id=" + id + 
+               ", comprador=" + id_comprador + 
+               ", vendedor=" + id_vendedor + 
+               ", monto=" + monto + "]";
+    }
+
+
+
+
     @Override
     public boolean equals(Object otro){
         if (!(otro instanceof Transaccion)) return false;

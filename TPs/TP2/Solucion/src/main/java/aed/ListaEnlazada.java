@@ -1,8 +1,7 @@
 package aed;
 
-import java.util.*;
 
-public class ListaEnlazada<T> implements Secuencia<T> { // esto sería como declarar los obs de un TAD
+public class ListaEnlazada<T> { // esto sería como declarar los obs de un TAD
     private int size;
     private Nodo primero;
     private Nodo ultimo; 
@@ -141,49 +140,4 @@ public class ListaEnlazada<T> implements Secuencia<T> { // esto sería como decl
         };
         return lista + this.ultimo.valor + "]";
     }
-
-    private class ListaIterador implements Iterador<T> {
-    	Nodo ultNodo;
-        Nodo proxNodo;
-
-        private ListaIterador() { // constructor
-            this.ultNodo = null; // aún no hay nodo evaluado
-            this.proxNodo = primero; // empiezo mirando el primer nodo. si primero == null, haySiguiente devuelve false
-        }    
-
-        public boolean haySiguiente() {
-	        return proxNodo != null; // si no hay nodo al que ir devuelve false
-        }
-        
-        public boolean hayAnterior() {
-	        return ultNodo != null; // si no hay nodo al que volver devuelve false
-        }
-
-        public T siguiente() {
-            if (!haySiguiente()){ 
-                throw new UnsupportedOperationException("No hay siguiente");
-            }
-
-            T valor = proxNodo.valor;
-            ultNodo = proxNodo;
-            proxNodo = proxNodo.sig;
-            return valor;
-         }
-        
-
-        public T anterior() {
-            if (!hayAnterior()) {
-                throw new UnsupportedOperationException("No hay anterior");
-            }
-            T valor = ultNodo.valor;
-            proxNodo = ultNodo;
-            ultNodo = ultNodo.ant;
-            return valor;
-        }
-    }
-
-    public Iterador<T> iterador() {
-	    return new ListaIterador();
-    }
-
 }

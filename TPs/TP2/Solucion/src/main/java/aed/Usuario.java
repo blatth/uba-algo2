@@ -1,3 +1,5 @@
+package aed;
+
 public class Usuario implements Comparable<Usuario> {
     public int id;
     public int saldo;
