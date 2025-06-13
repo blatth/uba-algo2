@@ -104,4 +104,53 @@ public class GrupoTests {
 
         assertEquals(0, bc.txUltimoBloque().length);
     }
+
+    @Test
+    public void testUnicoUsuarioConCreacion() { // inicializo con un solo usuario
+        Berretacoin bc = new Berretacoin(1);
+        Transaccion[] trans = {
+                new Transaccion(0, 0, 1, 999)
+        };
+        bc.agregarBloque(trans);
+
+        assertEquals(1, bc.maximoTenedor());
+        assertEquals(0, bc.montoMedioUltimoBloque()); // no cuenta creaciones
+    }
+
+    @Test
+    public void testTransaccionConMontoCero() { // verifico que no se rompa el heap ni haya error de división por 0 en el promedio
+        Berretacoin bc = new Berretacoin(2);
+        Transaccion[] trans = {
+                new Transaccion(1, 1, 2, 0)
+        };
+        bc.agregarBloque(trans);
+
+        assertEquals(0, bc.montoMedioUltimoBloque());
+        assertEquals(1, bc.maximoTenedor()); // empate, menor id
+    }
+
+    @Test
+    public void testPromedioDespuesDeHackearTodo() { // verifico que después de hackeear el montoMedio sea 0 porque no hay transacciones
+        Berretacoin bc = new Berretacoin(2);
+        Transaccion[] trans = {
+                new Transaccion(1, 1, 2, 100)
+        };
+        bc.agregarBloque(trans);
+        bc.hackearTx();
+
+        assertEquals(0, bc.montoMedioUltimoBloque());
+    }
+
+    @Test
+    public void testTransaccionConMismoUsuario() {
+        Berretacoin bc = new Berretacoin(1);
+        Transaccion[] trans = {
+                new Transaccion(1, 1, 1, 50)
+        };
+        bc.agregarBloque(trans);
+
+        assertEquals(50, bc.montoMedioUltimoBloque());
+        assertEquals(1, bc.maximoTenedor());
+    }
+
 }
