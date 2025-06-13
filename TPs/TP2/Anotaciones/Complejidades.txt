@@ -1,0 +1,52 @@
+1. Berretacoin(int n_usuarios) – O(P)
+-------------------------------------------------
+- Se crea un arreglo de Handle<Usuario> de tamaño P -> O(P)
+- Se inicializa un ArrayList con capacidad P -> O(1)
+- Se crean P usuarios y handles, y se insertan en el arreglo y el ArrayList -> O(P)
+- Se construye el heap con HeapMax(heap[], n) -> heapify en O(P)
+- Se inicializa una lista enlazada vacía para bloques -> O(1)
+Total: O(P)
+
+2. agregarBloque(Transaccion[] transacciones) – O(nb × log P)
+--------------------------------------------------------------
+- Para cada transacción:
+  - Se accede al comprador y vendedor vía handles -> O(1)
+  - Se actualiza el saldo -> O(1)
+  - Se actualiza el heap de usuarios -> O(log P)
+- Se obtiene el ID máximo de transacción -> O(nb)
+- Se agregan transacciones al bloque (heap interno en el bloque) -> O(nb × log nb), pero esto no afecta la complejidad externa.
+- Se agrega el bloque a la lista -> O(1)
+Total: O(nb × log P)
+
+3. txMayorValorUltimoBloque() – O(1)
+-------------------------------------
+- Se accede al último bloque -> O(1) (por implementación de lista optimizada)
+- Se devuelve la transacción de mayor valor del heap del bloque -> O(1)
+Total: O(1)
+
+4. txUltimoBloque() – O(nb)
+-----------------------------
+- Se accede al último bloque -> O(1)
+- Se recorre y copia cada transacción del bloque -> O(nb)
+Total: O(nb)
+
+5. maximoTenedor() – O(1)
+--------------------------
+- Se accede al máximo del heap de usuarios -> O(1)
+Total: O(1)
+
+6. montoMedioUltimoBloque() – O(1)
+-----------------------------------
+- Se accede al último bloque -> O(1)
+- Se devuelve sumaMontos / cantidadTransaccionesValidas
+  - Ambas variables se mantienen actualizadas al agregar/quitar transacciones -> no hay recorrido, O(1)
+Total: O(1)
+
+7. hackearTx() – O(log nb + log P)
+------------------------------------
+- Se accede al último bloque -> O(1)
+- Se extrae la transacción de mayor monto del heap del bloque -> O(log nb)
+- Se actualizan saldos de comprador y vendedor -> O(1)
+- Se actualizan usuarios en el heap -> O(log P)
+- Se elimina la transacción de la lista enlazada por handle -> O(1)
+Total: O(log nb + log P)
