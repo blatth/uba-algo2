@@ -5,6 +5,7 @@ public class Bloque {
     private HeapMax<Transaccion> heap;
     private int sumaMontos;
     private ListaEnlazada<Transaccion>.HandleLista[] handleId;
+    private int cantTransaccionesValidas;
 
 
     public Bloque(int capacidad) {
@@ -12,6 +13,7 @@ public class Bloque {
         this.heap = new HeapMax<Transaccion>(capacidad);
         this.sumaMontos = 0;
         this.handleId = new ListaEnlazada.HandleLista[capacidad];
+        this.cantTransaccionesValidas = 0;
     }
 
     public void agregarTransaccion(Transaccion t) {
@@ -23,6 +25,7 @@ public class Bloque {
 
         if (t.id_comprador() != 0) {
             sumaMontos += t.monto();
+            cantTransaccionesValidas++;
         }
     }
 
@@ -41,6 +44,7 @@ public class Bloque {
     public void restarMonto(Transaccion t) { // para restar cuando se saca la transacción con hackearTx
     if (t.id_vendedor() != 0) { // no hay que tener en cuenta las de creación
         sumaMontos -= t.monto();
+        cantTransaccionesValidas--;
     }
     }
 
@@ -49,14 +53,8 @@ public class Bloque {
     }
 
     public int promedioMontos() {
-        int n = 0;
-        for (int i = 0; i < transacciones.longitud(); i++) {
-            if (transacciones.obtener(i).id_comprador() != 0) {
-                n++;
-            }
-        }
-        if (n > 0) {
-            return sumaMontos / n;
+        if (cantTransaccionesValidas > 0) {
+            return sumaMontos / cantTransaccionesValidas;
         } else {
             return 0;
         }
