@@ -153,4 +153,21 @@ public class GrupoTests {
         assertEquals(1, bc.maximoTenedor());
     }
 
+    @Test
+    public void testMaximoTenedorRepetido() {
+        Berretacoin bc = new Berretacoin(2);
+        Transaccion[] trans = {
+                new Transaccion(1, 1, 2, 50)
+        };
+        bc.agregarBloque(trans);
+
+        int t1 = bc.maximoTenedor();
+        int t2 = bc.maximoTenedor();
+        int t3 = bc.maximoTenedor();
+
+        assertEquals(t1, t2);
+        assertEquals(t2, t3);
+    }
+
+
 }
