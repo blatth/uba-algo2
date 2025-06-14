@@ -16,32 +16,31 @@ public class Bloque {
     }
 
     public void agregarTransaccion(Transaccion t) {
-        // guardamos la transacción y su nodo en la lista
-        ListaEnlazada<Transaccion>.HandleLista h = transacciones.agregarAtrasHandle(t);
-        handleId[t.id()] = h;
+        ListaEnlazada<Transaccion>.HandleLista h = transacciones.agregarAtrasHandle(t); // Se agrega un nuevo nodo a transacciones y h apunta a ese nodo
+        handleId[t.id()] = h; // En el array de handles, en la posicion id se encuentra el handle h
 
-        heap.agregarElemento(t);
+        heap.agregarElemento(t); 
 
-        if (t.id_comprador() != 0) {
+        if (t.id_comprador() != 0) { //Actualizamos sumaMontos diferenciando si la transaccion es de creacion (Si es de creacion, no la sumamos) 
             sumaMontos += t.monto();
             cantTransaccionesValidas++;
         }
     }
 
-    public Transaccion obtenerMaximaTransaccion() { // no sé si se usa
-        return heap.obtenerMaximo(); // O(1)
+    public Transaccion obtenerMaximaTransaccion() {
+        return heap.obtenerMaximo(); 
     }
 
-    public Transaccion extraerMaximaTransaccion() { // para sacar la transacción en hackearTx
-        return heap.sacarMaximo(); // O(log n_b)
+    public Transaccion extraerMaximaTransaccion() { 
+        return heap.sacarMaximo(); 
     }
 
-    public void eliminarTransaccionPorId(int id) {
-        transacciones.eliminarHandle(handleId[id]);
+    public void eliminarTransaccionPorId(int id) { 
+        transacciones.eliminarHandle(handleId[id]); // handleId[id] apunta al nodo que queremos eliminar -> O(1) 
     }
 
-    public void restarMonto(Transaccion t) { // para restar cuando se saca la transacción con hackearTx
-    if (t.id_comprador() != 0) { // no hay que tener en cuenta las de creación
+    public void restarMonto(Transaccion t) { 
+    if (t.id_comprador() != 0) { // Actualizamos si no es de creacion
         sumaMontos -= t.monto();
         cantTransaccionesValidas--;
     }
