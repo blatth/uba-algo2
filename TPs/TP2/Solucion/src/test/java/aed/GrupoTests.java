@@ -13,7 +13,7 @@ import org.junit.jupiter.api.BeforeEach;
 public class GrupoTests {
 
     @Test
-    public void testHackearUnicaTransaccion() { // se erifica que hackearTx elimina correctamente la única transacción y se revierten los saldos
+    public void testHackearUnicaTransaccion() { // se verifica que hackearTx elimina correctamente la única transacción y se revierten los saldos
         Berretacoin bc = new Berretacoin(2);
         Transaccion[] trans = {
             new Transaccion(0, 1, 2, 50)

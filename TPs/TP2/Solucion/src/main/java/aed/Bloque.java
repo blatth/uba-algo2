@@ -21,7 +21,7 @@ public class Bloque {
 
         heap.agregarElemento(t); 
 
-        if (t.id_comprador() != 0) { //Actualizamos sumaMontos diferenciando si la transaccion es de creacion (Si es de creacion, no la sumamos) 
+        if (t.id_comprador() != 0) { // Actualizamos sumaMontos diferenciando si la transaccion es de creacion (Si es de creacion, no la sumamos)
             sumaMontos += t.monto();
             cantTransaccionesValidas++;
         }
@@ -50,7 +50,7 @@ public class Bloque {
         return sumaMontos;
     }
 
-    public int promedioMontos() {
+    public int promedioMontos() { // Se toma la suma total de montos O(1) y la cantidad de transacciones válidas O(1) -> O(1)
         if (cantTransaccionesValidas > 0) {
             return sumaMontos / cantTransaccionesValidas;
         } else {

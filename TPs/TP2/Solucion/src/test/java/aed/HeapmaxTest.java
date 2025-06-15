@@ -53,7 +53,7 @@ public class HeapmaxTest {
         heap.agregarElemento(5);
         heap.agregarElemento(2);
 
-        assertEquals(5, heap.obtenerMaximo());
+        assertEquals(5, heap.sacarMaximo());
 
     }
 
@@ -115,5 +115,17 @@ public class HeapmaxTest {
         assertEquals("[]", heap.toString());
 
     }
+
+    @Test
+    public void testDuplicados() {
+        HeapMax<Integer> heap = new HeapMax<>(5);
+        heap.agregarElemento(4);
+        heap.agregarElemento(4);
+        heap.agregarElemento(4);
+        assertEquals(4, heap.obtenerMaximo());
+        heap.sacarMaximo();
+        assertEquals(4, heap.obtenerMaximo());
+}
+
 
 }
